@@ -1,4 +1,3 @@
-
 class String
 
   def red
@@ -194,7 +193,7 @@ def history
 Let's look at Dave's long relationship with coding:
 
 1987 -  ZX Spectrum. Dave carefully copies programs out of books
-	   to play games. And not very good games either.
+	to play games. And not very good games either.
 	   
 1992 -  286 PC. The games get better, but more importantly Dave
 	learns his way around the DOS shell.
