@@ -17,39 +17,20 @@ class String
   end
   
 end
-
     
 def prompt
-  print "Input >"
-  gets.chomp
+  print "Input > "
+  gets.chomp.downcase
 end
 
 def prompt_opts
   puts %{
-        WHO is David Wickes?
-        WHAT does he do?
-        What is his HISTORY with coding?
-		WHY does he want to learn to code?}
-  puts "        HOW would " + "MA ".red + "change his life?"
-  puts %{	Or just leave by EXITing or ENDing.}
-end
-
-def standard_moves
-  {
-  "end" => ["end_game"],
-  "exit" => ["end_game"],
-  "who" => ["who"],
-  "what" => ["what"],
-  "how" => ["how"],
-  "why" => ["why"],
-  "help" => ["help"],
-  "history" => ["history"],
-  "wait" => ["wait"],
-  "dairy farmer" => ["dairy_farmer"],
-  "zork" => ["zork"],
-  "MAlogo" => ["MA_logo"],
-  "skimlinks" => ["skimlinks_logo"]
-  }
+    WHO is David Wickes?
+    WHAT does he do?
+    What is his HISTORY with coding?
+    WHY does he want to learn to code?}
+  puts "    HOW would " + "Makers Academy".red + " change his life?\n\n"
+  puts "    Or just leave by QUITing.\n\n"
 end
 
 def skimlinks_logo
@@ -76,7 +57,7 @@ def skimlinks_logo
                         :=+++=:".blue
 end
 
-def MA_logo
+def makers_academy_logo
   puts "             MMM            MMM     AAAAAAAAAAAAAAAAAA          
              MMMMMM      MMMMMM     AAAAAAAAAAAAAAAAAA          
              MMMMMMMM  MMMMMMMM     AAAAAAAAAAAAAAAAAA          
@@ -91,33 +72,32 @@ end
 
 def start_app
 #note to self: Ascii illustration is hard with the escape character...
-  puts %{
-Welcome to...}
-puts "---------------------------------------------------------------------
+  puts "\nWelcome to..."
+  puts "---------------------------------------------------------------------
  ___               _        _             _ _         _   _          
 |   \\ __ ___ _____( )___   /_\\  _ __ _ __| (_)__ __ _| |_(_)___ _ _  
 | |) / _` \\ V / -_)/(_-<  / _ \\| '_ \\ '_ \\ | / _/ _` |  _| / _ \\ ' \\ 
 |___/\\__,_|\\_/\\___| /__/ /_/ \\_\\ .__/ .__/_|_\\__\\__,_|\\__|_\\___/_||_|
                                |_|  |_|                              
-powered by AppBot 3000(TM)             	69 character width minimum!
+powered by AppBot 3000(TM)              69 character width minimum!
 ---------------------------------------------------------------------".bold.green
-  puts %{	or: "How learning to code in 12 weeks would change my life"
-}
+  puts 'or: "How learning to code in 12 weeks would change my life"'
   start
 end
 
-def your_move(choices)
+def your_move
   input_attempts = 0
+  moves = ["quit", "who", "what", "how", "why", "help", "history", "wait", "dairy_farmer", "zork"]
   while input_attempts < 4
     next_move = prompt
-    choices.each do |choice, fate|
-      if next_move.include?(choice)
-        fate_method, fate_argument = fate
-        return send(fate_method)
-      end
+    moves.each do |choice|
+      return send(choice) if next_move.include?(choice)
     end
     input_attempts += 1
-    puts ["\nI'm sorry, I did not understand that.","\nGort! Klaatu barada nikto!","\nWhat are you doing Dave?.","\nHave you tried typing 'help'?"].choice
+    puts ["\nI'm sorry, I did not understand that.",
+          "\nGort! Klaatu barada nikto!",
+          "\nWhat are you doing Dave?.",
+          "\nHave you tried typing 'help'?"].sample
   end
   puts %{
 Look, I'm not sure what you meant by that, and that's entirely Dave's
@@ -125,7 +105,7 @@ fault. If he was any good at programming an AppBot 3000 then he
 wouldn't need to learn to code in just twelve weeks.
 
 So, let's just go right back to the beginning...}
-  send (start)
+  start
 end
 
 def start
@@ -139,9 +119,7 @@ weeks would change David Wickes' life. Dave's my creator - he made me!
 So ask me some questions. Questions like:
 }
   prompt_opts
-  puts %{
-}
-  your_move(standard_moves)
+  your_move
 end
 
 def who
@@ -162,7 +140,7 @@ a copywriter and a digital marketeer.
 
 He's had jobs - but he's never really had a career.
 }
-  your_move(standard_moves)
+  your_move
 end
 
 def what
@@ -183,17 +161,16 @@ an API for them...
 
 In short, he wants to be a software developer.
 }
-  your_move(standard_moves)
+  your_move
 end
 
 def history
   puts "AppBot 3000 searching database... well, not really a database... anyway...".green
-
   puts %{
 Let's look at Dave's long relationship with coding:
 
 1987 -  ZX Spectrum. Dave carefully copies programs out of books
-	to play games. And not very good games either.
+    to play games. And not very good games either.
 	   
 1992 -  286 PC. The games get better, but more importantly Dave
 	learns his way around the DOS shell.
@@ -222,7 +199,7 @@ Let's look at Dave's long relationship with coding:
 	up the website, and reverse engineers the SQL database
 	structure. Then he works out how to improve it.
 }
-  your_move(standard_moves)
+  your_move
 end
 
 def why
@@ -252,11 +229,10 @@ Dave's New Year's Resolution is to learn to code properly
 development. However long it takes, he knows he can do it.
 
 }
-  your_move(standard_moves)
+  your_move
 end
 
 def how
-
   puts %{
 
 So, the big question - how would this change Dave's life?
@@ -295,10 +271,8 @@ puts %{
 Basically, Dave wants to get where he's going - now. Coding
 boot camp at Maker's Academy would completely change his life.
 }
-
-  your_move(standard_moves)
+  your_move
 end
-
 
 def help
   puts %{
@@ -306,10 +280,8 @@ Wow, Dave even programmed me with a help function! What a guy...
 
 The available commands are:
 }
-
   prompt_opts
-  your_move(standard_moves)
-
+  your_move
 end
 
 def zork
@@ -323,10 +295,8 @@ door.
 There is a small mailbox here.
 
 }
-
   puts "Wait, no there isn't. Forget that. Don't open the mailbox \nAsk more questions about Dave instead.\n".green
-
-  your_move(standard_moves)
+  your_move
 end
 
 def wait
@@ -337,9 +307,8 @@ You wait - time passes
 
 Thorin sits down and starts singing about gold.
 
-    }
-
-    your_move(standard_moves)
+  }
+  your_move
 end
 
 def dairy_farmer
@@ -348,24 +317,21 @@ def dairy_farmer
 
 How appropriate. You fight like a cow.
 
-    }
-    your_move(standard_moves)
+  }
+  your_move(standard_moves)
 end
 
-def end_game
-
+def quit
   puts %{
 Thanks so much to the good people at Makers Academy...
-        
-        }
-
-  MA_logo()
-  print "\nENTER to scroll"
+  
+  }
+  makers_academy_logo
+  print "\nENTER to scroll > "
   gets
-  puts %{\nAnd Skimlinks...}
-  skimlinks_logo()
-  puts %{\nfor putting this competition together.}
-  print "\nENTER to scroll"
+  puts "\nAnd Skimlinks..."
+  skimlinks_logo
+  puts "\nfor putting this competition together.\nENTER to scroll >"
   gets
   puts "\nAppBot 3000 shutting down...".green
   puts "\n.___________. __    __   _______     _______ .__   __.  _______  
@@ -373,7 +339,7 @@ Thanks so much to the good people at Makers Academy...
 `---|  |----`|  |__|  | |  |__      |  |__   |   \\|  | |  .--.  |
     |  |     |   __   | |   __|     |   __|  |  . `  | |  |  |  |
     |  |     |  |  |  | |  |____    |  |____ |  |\\   | |  '--'  |
-    |__|     |__|  |__| |_______|   |_______||__| \\__| |_______/ ".green
+    |__|     |__|  |__| |_______|   |_______||__| \\__| |_______/ \n\n".green
 end
 
 start_app
