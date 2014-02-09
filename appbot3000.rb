@@ -1,8 +1,3 @@
-#Written by David Wickes
-#Shamelessly adapted from an adventure game written by Josh Hill (https://github.com/jamesjoshuahill/joshs_makers_game)
-#Which he wrote in answer to exercise 35 of Ruby the Hard Way (
-#color by Veger at stackoverflow (http://stackoverflow.com/questions/2070010/how-to-output-my-ruby-commandline-text-in-different-colours)
-#Steal like an artist!
 
 class String
 
