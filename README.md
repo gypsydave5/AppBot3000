@@ -7,4 +7,6 @@ It was shamelessly adapted from a game by my friend Josh Hill (https://github.co
 
 The colours were taken from Ivan Black at StackOverflow (http://stackoverflow.com/questions/1489183/colorized-ruby-output), and please me by 'duck punching'/'monkey patching' (what a phrase!) the String class.
 
+You can play a live version at repl.it (http://repl.it/O7j/1)
+
 It's also the first ever thing I've put on GitHub :)
